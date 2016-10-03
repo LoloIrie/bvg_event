@@ -308,7 +308,7 @@ class Bvg_turniere{
         ?>
         <div class="wrap">
             <h2>Ausschreibungen</h2>
-            <form method="post">
+            <form method="post" action="?page=bvg_turniere_add">
                 <input name="doaction" class="button-secondary action" type="submit" value="Neue Ausschreibung"/>
             </form>
             <div id="poststuff">
@@ -364,25 +364,32 @@ class Bvg_turniere{
 function bvg_turniere_add(){
     // $Ausschreibung_obj = Bvg_turniere::get_instance();
 
-    Bvg_turniere::get_instance();
+    $content = '';
 
-    $content = ' <div class="recb_inputblock"><input type="radio" name="content-type" class="vecb_radiobtn" id="vecb_wrap" value="wrap" >
-  <label for="wrap">&nbsp;Wrap Selection</label>&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="vecb_radiobtn" name="content-type" id="block" value="block" >
-  <label for="block">&nbsp;Single Block</label></div>';
+    //Bvg_turniere::get_instance();
 
-    $content .= '<section id="vecb_wrap-selection" class="vecb_inputbox recb_inputblock"><div class="vecb_label">Before</div>
-	<textarea name="left_tag" id="left_tag" cols="45" rows="5"></textarea>';
+    // Name
+    $content .= '<div id="bvg_turniere_add_fieldset" class="postbox">';
 
-    $content .= '<div class="recb_inputblock vecb_less_space"><div class="vecb_label">After</div>
-	<textarea name="right_tag" id="left_tag" cols="45" rows="5"></textarea></div></section>';
+    $content .= '<label for="name" class="bvg_label">Turniername:</label><input type="text" name="name" id="name" />';
 
-    $content .= '<div id="vecb_single-block" class="vecb_inputbox recb_inputblock"><div class="vecb_label">Content</div>
-	<textarea name="block_content" cols="45" rows="5"></textarea></div>';
+    $content .= '<label for="date_start" class="bvg_label">Date Start:</label><input type="date" name="date_start" id="date_start" />';
+
+    $content .= '<label for="date_end" class="bvg_label">Date Ende:</label><input type="date" name="date_end" id="date_end" />';
+
+    $content .= '<label for="date_end" class="bvg_label">Adresse:</label><textarea name="adresse" id="adresse" rows="4" cols="45"></textarea>';
+
+    $content .= '<label for="date_end" class="bvg_label">Beschreibung:</label><textarea name="beschreibung" id="beschreibung" rows="4" cols="45"></textarea>';
+
+    $content .= '<label for="name" class="bvg_label">Disziplinen:</label><input type="text" name="disziplinen" id="disziplinen" />';
+
+    $content .= '<label for="name" class="bvg_label">Spielniveau:</label><input type="text" name="spielniveau" id="spielniveau" />';
+
+    $content .= '<label for="name" class="bvg_label">Dateien:</label><input type="text" name="dateien" id="dateien" />';
+
+    $content .= '</div>';
 
     echo $content;
-
-    echo 'Yes';
 }
 
 
