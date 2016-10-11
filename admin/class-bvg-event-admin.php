@@ -86,8 +86,8 @@ class Items_Liste extends WP_List_Table
 
         $wpdb->delete(
             "{$wpdb->prefix}ausschreibungen",
-            [ 'ID' => $id ],
-            [ '%d' ]
+            array( 'ID' => $id ),
+            array( '%d' )
         );
     }
 
@@ -123,9 +123,9 @@ class Items_Liste extends WP_List_Table
 
         $title = '<strong>' . $item['name'] . '</strong>';
 
-        $actions = [
+        $actions = array(
             'delete' => sprintf( '<a href="?page=%s&action=%s&ausschreibung=%s&_wpnonce=%s">Delete</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['ID'] ), $delete_nonce )
-        ];
+        );
 
         return $title . $this->row_actions( $actions );
     }
@@ -173,7 +173,7 @@ class Items_Liste extends WP_List_Table
      * @return array
      */
     function get_columns() {
-        $columns = [
+        $columns = array(
             'cb'      => '<input type="checkbox" />',
             'name'    => __( 'Name', 'sp' ),
             'date_start' => __( 'Date', 'sp' ),
@@ -183,7 +183,7 @@ class Items_Liste extends WP_List_Table
             'levels'    => __( 'Spielklasse', 'sp' ),
             'description'    => __( 'Beschreibung', 'sp' ),
             'files'    => __( 'Dateien', 'sp' )
-        ];
+        );
 
         return $columns;
     }
@@ -209,9 +209,9 @@ class Items_Liste extends WP_List_Table
      * @return array
      */
     public function get_bulk_actions() {
-        $actions = [
+        $actions = array(
             'bulk-delete' => 'Delete'
-        ];
+        );
 
         return $actions;
     }
@@ -230,10 +230,10 @@ class Items_Liste extends WP_List_Table
         $current_page = $this->get_pagenum();
         $total_items  = self::record_count();
 
-        $this->set_pagination_args( [
+        $this->set_pagination_args( array(
             'total_items' => $total_items, //WE have to calculate the total number of items
             'per_page'    => $per_page //WE have to determine how many items to show on a page
-        ] );
+        ) );
 
 
         $this->items = self::get_ausschreibungen( $per_page, $current_page );
@@ -329,7 +329,7 @@ class Bvg_Event_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-        add_action( 'admin_menu', [ $this, 'plugin_menu' ] );
+        add_action( 'admin_menu', array( $this, 'plugin_menu') );
 	}
 
 	/**
@@ -391,7 +391,7 @@ class Bvg_Event_Admin {
             'Turniere',
             'manage_options',
             'bvg-event-settings',
-            [ $this, 'bvg_event_settings' ],
+            array( $this, 'bvg_event_settings' ),
             plugin_dir_url( __FILE__ ).'../icons/bvg_event_icon.png',
             20
         );
@@ -400,7 +400,7 @@ class Bvg_Event_Admin {
         //add_submenu_page( 'bvg-event-settings', 'Auschreibungenliste', 'Auschreibungenliste', 'manage_options', 'edit.php?post_type=ausschreibungen');
         add_submenu_page( 'bvg-event-settings', 'Neue Ausschreibung', 'Neue Ausschreibung', 'manage_options', 'post-new.php?post_type=ausschreibungen');
 
-        add_action( "load-$hook", [ $this, 'screen_option' ] );
+        add_action( "load-$hook", array( $this, 'screen_option' ) );
     }
 
     /**
@@ -488,11 +488,11 @@ class Bvg_Event_Admin {
     {
 
         $option = 'per_page';
-        $args = [
+        $args = array(
             'label' => 'Ausschreibungen',
             'default' => 10,
             'option' => 'ausschreibungen_per_page'
-        ];
+        );
 
         add_screen_option($option, $args);
 
