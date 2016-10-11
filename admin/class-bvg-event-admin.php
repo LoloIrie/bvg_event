@@ -37,12 +37,12 @@ class Items_Liste extends WP_List_Table
     public function __construct()
     {
 
-        parent::__construct([
+        parent::__construct( array(
             'singular' => __('Ausschreibung', 'sp'), //singular name of the listed records
             'plural' => __('Ausschreibungen', 'sp'), //plural name of the listed records
             'ajax' => false //should this table support ajax?
 
-        ]);
+        ));
 
     }
 
